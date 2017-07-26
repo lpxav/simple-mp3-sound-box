@@ -47,7 +47,7 @@ int buttonState = 0; // variable for reading the pushbutton status
 
 void setup()
 {
-  pinMode(buttonPin, INPUT);
+  pinMode(button1, INPUT);
   mySoftwareSerial.begin(9600);
   Serial.begin(115200);
   
@@ -93,8 +93,8 @@ void setup()
 //  myDFPlayer.outputSetting(true, 15); //output setting, enable the output and set the gain to 15
   
   //----Mp3 play----
-  myDFPlayer.playFolder(15, 4);  //play specific mp3 in SD:/15/004.mp3; Folder Name(1~99); File Name(1~255)
-  delay(10000);// play the song 10 secondes
+ // myDFPlayer.playFolder(15, 4);  //play specific mp3 in SD:/15/004.mp3; Folder Name(1~99); File Name(1~255)
+//delay(10000);// play the song 10 secondes
   myDFPlayer.playMp3Folder(4); //play specific mp3 in SD:/MP3/0004.mp3; File Name(0~65535)
   delay(10000); //play the song 10 secondes
 
@@ -108,6 +108,16 @@ void setup()
 }
 
 void loop()
+     {
+  // read the state of the pushbutton value:
+  buttonState = digitalRead(button1);
+if (buttonState == HIGH) {     
+ Serial.print("s");  
+  } 
+  else {
+   myDFPlayer.playFolder(15, 4);
+  }
+
 {
   static unsigned long timer = millis();
   
@@ -119,6 +129,7 @@ void loop()
   if (myDFPlayer.available()) {
     printDetail(myDFPlayer.readType(), myDFPlayer.read()); //Print the detail message from DFPlayer to handle different errors and states.
   }
+}
 }
 
 void printDetail(uint8_t type, int value){
