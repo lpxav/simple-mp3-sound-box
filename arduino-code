@@ -28,10 +28,21 @@
 #include "Arduino.h"
 #include "SoftwareSerial.h"
 #include "DFRobotDFPlayerMini.h"
-
+ 
 SoftwareSerial mySoftwareSerial(10, 11); // RX, TX
 DFRobotDFPlayerMini myDFPlayer;
 void printDetail(uint8_t type, int value);
+
+const int button1 = 2; // the number of the 1 st pushbutton pin
+const int button2 = 3; // the number of the 2nd pushbutton pin
+const int button3 = 4; // the number of the 3rd pushbutton pin
+const int button4 = 5; // the number of the 4th pushbutton pin
+const int button5 = 6; // the number of the 5th pushbutton pin
+const int button6 = 7; // the number of the 6th pushbutton pin
+const int button7 = 8; // the number of the 7th pushbutton pin
+const int button8 = 9; // the number of the 8th pushbutton pin
+const int button9 = 12; // the number of the 9th pushbutton pin
+
 
 void setup()
 {
@@ -81,9 +92,9 @@ void setup()
   
   //----Mp3 play----
   myDFPlayer.playFolder(15, 4);  //play specific mp3 in SD:/15/004.mp3; Folder Name(1~99); File Name(1~255)
-  delay(10000);
+  delay(10000);// play the song 10 secondes
   myDFPlayer.playMp3Folder(4); //play specific mp3 in SD:/MP3/0004.mp3; File Name(0~65535)
-  delay(10000);
+  delay(10000); //play the song 10 secondes
 
   //----Read imformation----
   Serial.println(myDFPlayer.readState()); //read mp3 state
