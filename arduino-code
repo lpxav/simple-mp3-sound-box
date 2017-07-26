@@ -112,12 +112,27 @@ void loop()
   // read the state of the pushbutton value:
   buttonState = digitalRead(button1);
 if (buttonState == HIGH) {     
-  //myDFPlayer.pause();  
-  Serial.println(("pause"));
+  //myDFPlayer.stop();  
+  Serial.println(("stop"));
+ 
   } 
   else {
    myDFPlayer.playFolder(15, 4);
      Serial.println(("play bouton 1"));
+     
+  }
+     {
+  // read the state of the pushbutton value:
+  buttonState = digitalRead(button2);
+if (buttonState == HIGH) {     
+  //myDFPlayer.stop();  
+  Serial.println(("stop"));
+ 
+  } 
+  else {
+   myDFPlayer.playFolder(15, 1);
+     Serial.println(("play bouton 2"));
+     
   }
 
 {
@@ -132,7 +147,10 @@ if (buttonState == HIGH) {
     printDetail(myDFPlayer.readType(), myDFPlayer.read()); //Print the detail message from DFPlayer to handle different errors and states.
   }
 }
-}
+}//button1
+}//button2
+//}//button3
+
 
 void printDetail(uint8_t type, int value){
   switch (type) {
