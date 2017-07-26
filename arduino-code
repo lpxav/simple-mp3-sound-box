@@ -95,8 +95,8 @@ void setup()
   //----Mp3 play----
  // myDFPlayer.playFolder(15, 4);  //play specific mp3 in SD:/15/004.mp3; Folder Name(1~99); File Name(1~255)
 //delay(10000);// play the song 10 secondes
-  myDFPlayer.playMp3Folder(4); //play specific mp3 in SD:/MP3/0004.mp3; File Name(0~65535)
-  delay(10000); //play the song 10 secondes
+  //myDFPlayer.playMp3Folder(4); //play specific mp3 in SD:/MP3/0004.mp3; File Name(0~65535)
+  //delay(10000); //play the song 10 secondes
 
   //----Read imformation----
   Serial.println(myDFPlayer.readState()); //read mp3 state
@@ -112,19 +112,21 @@ void loop()
   // read the state of the pushbutton value:
   buttonState = digitalRead(button1);
 if (buttonState == HIGH) {     
- Serial.print("s");  
+  //myDFPlayer.pause();  
+  Serial.println(("pause"));
   } 
   else {
    myDFPlayer.playFolder(15, 4);
+     Serial.println(("play bouton 1"));
   }
 
 {
-  static unsigned long timer = millis();
+  //static unsigned long timer = millis();
   
-  if (millis() - timer > 0) {
-    timer = millis();
-    myDFPlayer.next();  //Play next mp3 every 0 second.
-  }
+  //if (millis() - timer > 0) {
+   // timer = millis();
+   // myDFPlayer.next();  //Play next mp3 every 0 second.
+ // }
   
   if (myDFPlayer.available()) {
     printDetail(myDFPlayer.readType(), myDFPlayer.read()); //Print the detail message from DFPlayer to handle different errors and states.
