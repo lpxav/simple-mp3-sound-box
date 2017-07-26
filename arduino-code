@@ -43,9 +43,11 @@ const int button7 = 8; // the number of the 7th pushbutton pin
 const int button8 = 9; // the number of the 8th pushbutton pin
 const int button9 = 12; // the number of the 9th pushbutton pin
 
+int buttonState = 0; // variable for reading the pushbutton status
 
 void setup()
 {
+  pinMode(buttonPin, INPUT);
   mySoftwareSerial.begin(9600);
   Serial.begin(115200);
   
@@ -109,9 +111,9 @@ void loop()
 {
   static unsigned long timer = millis();
   
-  if (millis() - timer > 3000) {
+  if (millis() - timer > 0) {
     timer = millis();
-    myDFPlayer.next();  //Play next mp3 every 3 second.
+    myDFPlayer.next();  //Play next mp3 every 0 second.
   }
   
   if (myDFPlayer.available()) {
