@@ -43,10 +43,18 @@ const int button7 = 8; // the number of the 7th pushbutton pin
 const int button8 = 9; // the number of the 8th pushbutton pin
 const int button9 = 12; // the number of the 9th pushbutton pin
 
-int buttonState = 0; // variable for reading the pushbutton status
+//int buttonState = 0; // variable for reading the pushbutton status
+
+unsigned long lastDebounceTime = 0;  // the last time the output pin was toggled
+unsigned long debounceDelay = 150;    // the debounce time; increase if the output flickers
+
+//int playState = HIGH;         // the current state of the output pin
+int buttonState;             // the current reading from the input pin
+int lastButtonState = LOW;   // the previous reading from the input pin
 
 void setup()
 {
+  
   pinMode(button1, INPUT);
   mySoftwareSerial.begin(9600);
   Serial.begin(115200);
@@ -54,7 +62,7 @@ void setup()
   Serial.println();
   Serial.println(F("DFRobot DFPlayer Mini Demo"));
   Serial.println(F("Initializing DFPlayer ... (May take 3~5 seconds)"));
-  
+   
   if (!myDFPlayer.begin(mySoftwareSerial)) {  //Use softwareSerial to communicate with mp3.
     Serial.println(F("Unable to begin:"));
     Serial.println(F("1.Please recheck the connection!"));
@@ -109,48 +117,61 @@ void setup()
 
 void loop()
      {
+        int reading = digitalRead(button1);
+     
   // read the state of the pushbutton value:
-  buttonState = digitalRead(button1);
-if (buttonState == HIGH) {     
-  //myDFPlayer.stop();  
+
+if (reading != lastButtonState) {     
+  lastDebounceTime = millis();
+  if ((millis() - lastDebounceTime) > debounceDelay) {
+    // whatever the reading is at, it's been there for longer
+    // than the debounce delay, so take it as the actual current state:
+    buttonState = reading;
+   }
+  if (buttonState == HIGH) {
+  myDFPlayer.stop();  
   Serial.println(("stop"));
  
-  } 
+   lastButtonState = reading;
+  }
   else {
    myDFPlayer.playFolder(15, 4);
-     Serial.println(("play bouton 1"));
-     
-  }
-     {
-  // read the state of the pushbutton value:
-  buttonState = digitalRead(button2);
-if (buttonState == HIGH) {     
-  //myDFPlayer.stop();  
-  Serial.println(("stop"));
- 
-  } 
-  else {
-   myDFPlayer.playFolder(15, 1);
-     Serial.println(("play bouton 2"));
-     
+   Serial.println(("play bouton 1"));
+ lastButtonState = reading;
   }
 
-{
+ }
+ 
+     //{
+  // read the state of the pushbutton value:
+ // buttonState = digitalRead(button2);
+//if (buttonState == HIGH) {     
+ // myDFPlayer.stop();  
+ // Serial.println(("stop"));
+ 
+ // } 
+ // else {
+  // myDFPlayer.playFolder(15, 1);
+ //  Serial.println(("play bouton 2"));
+     
+
+
+
   //static unsigned long timer = millis();
   
   //if (millis() - timer > 0) {
    // timer = millis();
    // myDFPlayer.next();  //Play next mp3 every 0 second.
- // }
-  
+ //}
+
   if (myDFPlayer.available()) {
     printDetail(myDFPlayer.readType(), myDFPlayer.read()); //Print the detail message from DFPlayer to handle different errors and states.
   }
-}
-}//button1
-}//button2
-//}//button3
 
+}//button1
+//}//button2
+//}//button3
+     
 
 void printDetail(uint8_t type, int value){
   switch (type) {
