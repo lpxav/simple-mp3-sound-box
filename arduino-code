@@ -1,4 +1,4 @@
-/***************************************************
+/***}***********************************************
  DFPlayer - A Mini MP3 Player For Arduino
  <https://www.dfrobot.com/index.php?route=product/product&product_id=1121>
  
@@ -18,7 +18,7 @@
 <https://www.dfrobot.com/wiki/index.php/DFPlayer_Mini_SKU:DFR0299#Connection_Diagram>
  2.This code is tested on Arduino Uno, Leonardo, Mega boards
  ****************************************************/
- /***********Update by Lpxav***************
+ /***********Update by Lpxav & Justin [Lille Makers]***************
  Updated 2017-07-26
  1.Connection and Diagram can be found here
 <https://www.dfrobot.com/wiki/index.php/DFPlayer_Mini_SKU:DFR0299#Connection_Diagram>
@@ -46,11 +46,36 @@ const int button9 = 12; // the number of the 9th pushbutton pin
 //int buttonState = 0; // variable for reading the pushbutton status
 
 unsigned long lastDebounceTime = 0;  // the last time the output pin was toggled
-unsigned long debounceDelay = 150;    // the debounce time; increase if the output flickers
+unsigned long debounceDelay = 50;    // the debounce time; increase if the output flickers
 
 //int playState = HIGH;         // the current state of the output pin
 int buttonState;             // the current reading from the input pin
 int lastButtonState = LOW;   // the previous reading from the input pin
+
+int buttonState2;             // the current reading from the input pin
+int lastButtonState2 = LOW;   // the previous reading from the input pin
+
+int buttonState3;             // the current reading from the input pin
+int lastButtonState3 = LOW;   // the previous reading from the input pin
+
+int buttonState4;             // the current reading from the input pin
+int lastButtonState4 = LOW;   // the previous reading from the input pin
+
+int buttonState5;             // the current reading from the input pin
+int lastButtonState5 = LOW;   // the previous reading from the input pin
+
+int buttonState6;             // the current reading from the input pin
+int lastButtonState6 = LOW;   // the previous reading from the input pin
+
+int buttonState7;             // the current reading from the input pin
+int lastButtonState7 = LOW;   // the previous reading from the input pin
+
+int buttonState8;             // the current reading from the input pin
+int lastButtonState8 = LOW;   // the previous reading from the input pin
+
+int buttonState9;             // the current reading from the input pin
+int lastButtonState9 = LOW;   // the previous reading from the input pin
+
 
 void setup()
 {
@@ -116,6 +141,8 @@ void setup()
 }
 
 void loop()
+
+///////////////////////////////////////////////// bloc bouton 1 
      {
         int reading = digitalRead(button1);
      
@@ -135,13 +162,238 @@ if (reading != lastButtonState) {
    lastButtonState = reading;
   }
   else {
-   myDFPlayer.playFolder(15, 4);
+   myDFPlayer.playFolder(15, 1);
    Serial.println(("play bouton 1"));
  lastButtonState = reading;
   }
 
  }
+ ///////////////////////////////////////////////// bloc bouton 2 
+
+    {
+        int reading = digitalRead(button2);
+     
+  // read the state of the pushbutton value:
+
+if (reading != lastButtonState2) {     
+  lastDebounceTime = millis();
+  if ((millis() - lastDebounceTime) > debounceDelay) {
+    // whatever the reading is at, it's been there for longer
+    // than the debounce delay, so take it as the actual current state:
+    buttonState2 = reading;
+   }
+  if (buttonState2 == HIGH) {
+  myDFPlayer.stop();  
+  Serial.println(("stop"));
  
+   lastButtonState2 = reading;
+  }
+  else {
+   myDFPlayer.playFolder(15, 2);
+   Serial.println(("play bouton 2"));
+ lastButtonState2 = reading;
+  }
+
+ }
+
+ ///////////////////////////////////////////////// bloc bouton 3 
+
+    {
+        int reading = digitalRead(button3);
+     
+  // read the state of the pushbutton value:
+
+if (reading != lastButtonState3) {     
+  lastDebounceTime = millis();
+  if ((millis() - lastDebounceTime) > debounceDelay) {
+    // whatever the reading is at, it's been there for longer
+    // than the debounce delay, so take it as the actual current state:
+    buttonState3 = reading;
+   }
+  if (buttonState3 == HIGH) {
+  myDFPlayer.stop();  
+  Serial.println(("stop"));
+ 
+   lastButtonState3 = reading;
+  }
+  else {
+   myDFPlayer.playFolder(15, 3);
+   Serial.println(("play bouton 3"));
+ lastButtonState3 = reading;
+  }
+
+ }
+
+ ///////////////////////////////////////////////// bloc bouton 4 
+
+   {
+        int reading = digitalRead(button4);
+     
+  // read the state of the pushbutton value:
+
+if (reading != lastButtonState4) {     
+  lastDebounceTime = millis();
+  if ((millis() - lastDebounceTime) > debounceDelay) {
+    // whatever the reading is at, it's been there for longer
+    // than the debounce delay, so take it as the actual current state:
+    buttonState4 = reading;
+   }
+  if (buttonState4 == HIGH) {
+  myDFPlayer.stop();  
+  Serial.println(("stop"));
+ 
+   lastButtonState4 = reading;
+  }
+  else {
+   myDFPlayer.playFolder(15, 4);
+   Serial.println(("play bouton 4"));
+ lastButtonState4 = reading;
+  }
+
+ }
+
+ ///////////////////////////////////////////////// bloc bouton 5 
+   {
+        int reading = digitalRead(button5);
+     
+  // read the state of the pushbutton value:
+
+if (reading != lastButtonState5) {     
+  lastDebounceTime = millis();
+  if ((millis() - lastDebounceTime) > debounceDelay) {
+    // whatever the reading is at, it's been there for longer
+    // than the debounce delay, so take it as the actual current state:
+    buttonState5 = reading;
+   }
+  if (buttonState5 == HIGH) {
+  myDFPlayer.stop();  
+  Serial.println(("stop"));
+ 
+   lastButtonState5 = reading;
+  }
+  else {
+   myDFPlayer.playFolder(15, 5);
+   Serial.println(("play bouton 5"));
+ lastButtonState5 = reading;
+  }
+
+ }
+
+
+  ///////////////////////////////////////////////// bloc bouton 6 
+    {
+        int reading = digitalRead(button6);
+     
+  // read the state of the pushbutton value:
+
+if (reading != lastButtonState6) {     
+  lastDebounceTime = millis();
+  if ((millis() - lastDebounceTime) > debounceDelay) {
+    // whatever the reading is at, it's been there for longer
+    // than the debounce delay, so take it as the actual current state:
+    buttonState6 = reading;
+   }
+  if (buttonState6 == HIGH) {
+  myDFPlayer.stop();  
+  Serial.println(("stop"));
+ 
+   lastButtonState6 = reading;
+  }
+  else {
+   myDFPlayer.playFolder(15, 6);
+   Serial.println(("play bouton 6"));
+ lastButtonState6 = reading;
+  }
+
+ }
+
+     
+  ///////////////////////////////////////////////// bloc bouton 7 
+   {
+        int reading = digitalRead(button7);
+     
+  // read the state of the pushbutton value:
+
+if (reading != lastButtonState7) {     
+  lastDebounceTime = millis();
+  if ((millis() - lastDebounceTime) > debounceDelay) {
+    // whatever the reading is at, it's been there for longer
+    // than the debounce delay, so take it as the actual current state:
+    buttonState7 = reading;
+   }
+  if (buttonState7 == HIGH) {
+  myDFPlayer.stop();  
+  Serial.println(("stop"));
+ 
+   lastButtonState7 = reading;
+  }
+  else {
+   myDFPlayer.playFolder(15, 7);
+   Serial.println(("play bouton 7"));
+ lastButtonState7 = reading;
+  }
+
+ }
+
+      
+ ///////////////////////////////////////////////// bloc bouton 8
+   {
+        int reading = digitalRead(button8);
+     
+  // read the state of the pushbutton value:
+
+if (reading != lastButtonState8) {     
+  lastDebounceTime = millis();
+  if ((millis() - lastDebounceTime) > debounceDelay) {
+    // whatever the reading is at, it's been there for longer
+    // than the debounce delay, so take it as the actual current state:
+    buttonState8 = reading;
+   }
+  if (buttonState8 == HIGH) {
+  myDFPlayer.stop();  
+  Serial.println(("stop"));
+ 
+   lastButtonState8 = reading;
+  }
+  else {
+   myDFPlayer.playFolder(15, 8);
+   Serial.println(("play bouton 8"));
+ lastButtonState8 = reading;
+  }
+
+ }
+
+  
+ ///////////////////////////////////////////////// bloc bouton 9
+
+   {
+        int reading = digitalRead(button9);
+     
+  // read the state of the pushbutton value:
+
+if (reading != lastButtonState9) {     
+  lastDebounceTime = millis();
+  if ((millis() - lastDebounceTime) > debounceDelay) {
+    // whatever the reading is at, it's been there for longer
+    // than the debounce delay, so take it as the actual current state:
+    buttonState9 = reading;
+   }
+  if (buttonState9 == HIGH) {
+  myDFPlayer.stop();  
+  Serial.println(("stop"));
+ 
+   lastButtonState9 = reading;
+  }
+  else {
+   myDFPlayer.playFolder(15, 9);
+   Serial.println(("play bouton 9"));
+ lastButtonState9 = reading;
+  }
+
+ }
+
+ ///////////////////////////////////////////////// fin des etats boutons
+     
      //{
   // read the state of the pushbutton value:
  // buttonState = digitalRead(button2);
@@ -169,9 +421,14 @@ if (reading != lastButtonState) {
   }
 
 }//button1
-//}//button2
-//}//button3
-     
+}//button2
+}//button3
+}//button4    
+}//button5
+}//button6
+}//button7
+}//button8
+}//button9
 
 void printDetail(uint8_t type, int value){
   switch (type) {
