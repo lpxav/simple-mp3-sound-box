@@ -21,7 +21,7 @@
 <https://www.dfrobot.com/wiki/index.php/DFPlayer_Mini_SKU:DFR0299#Connection_Diagram>
  2.This code is tested on Arduino Uno, Leonardo, Mega boards
  ****************************************************/
- /***********Update by Lpxav & Justin & Benoit [Lille Makers]***************
+ /***********Update and simplified by Lpxav & Justin & Benoit [Lille Makers]***************
  Updated 2017-07-26
  1.Connection and Diagram can be found here
 <https://www.dfrobot.com/wiki/index.php/DFPlayer_Mini_SKU:DFR0299#Connection_Diagram>
@@ -41,12 +41,12 @@ void printDetail(uint8_t type, int value);
 
 unsigned long debounceDelay = 50;    // the debounce time; increase if the output flickers
 
-const int BUTTON_COUNT = 5;// nombre de boutons connectés 
-const int button[BUTTON_COUNT] = {2,3,4,5,6};//sortie de chaque bouton
+const int BUTTON_COUNT = 9;// nombre de bouton connecté 
+const int button[BUTTON_COUNT] = {2,3,4,5,6,7,8,9,12};//sortie de chaque bouton
 //const int buttonIsWired[BUTTON_COUNT] = {1};
-int lastButtonState[BUTTON_COUNT] = {LOW,LOW,LOW,LOW,LOW};    // the last detected state of the buttons
+int lastButtonState[BUTTON_COUNT] = {LOW,LOW,LOW,LOW,LOW,LOW,LOW,LOW,LOW};    // the last detected state of the buttons
 unsigned long lastDebounceTime[BUTTON_COUNT] = {0};  // the last time the output pin was toggled
-
+    
 void setup()
 {
    Serial.println(""+button[3]);
@@ -72,7 +72,7 @@ void setup()
   myDFPlayer.setTimeOut(500); //Set serial communictaion time out 500ms
   
   //----Set volume----
-  myDFPlayer.volume(10);  //Set volume value (0~30).
+  myDFPlayer.volume(1);  //Set volume value (0~30).
   myDFPlayer.volumeUp(); //Volume Up
   myDFPlayer.volumeDown(); //Volume Down
   
